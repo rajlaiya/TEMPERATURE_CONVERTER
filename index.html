@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TempConverter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto Mono', monospace; /* Apply coding font */
+            display: flex;
+            flex-direction: column; /* To place header above container */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            transition: background-color 0.5s ease-in-out; /* Smooth transition */
+            margin: 0;
+            background-color: #f4f4f4; /* Default background */
+            position: relative; /* To position the social icons */
+            font-size: 16px; /* Base font size for responsiveness */
+        }
+
+        .site-header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 20px;
+            width: 100%; /* Make header full width */
+        }
+
+        .logo-placeholder {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .typing-effect {
+            overflow: hidden;
+            border-right: .15em solid orange; /* Cursor effect */
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .1em;
+            animation:
+                typing 3.5s steps(14, end), /* Adjust steps based on text length */
+                blink-caret .75s step-end infinite;
+            color: #333;
+            font-size: 2rem; /* Adjust initial size */
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: orange; }
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white for glass effect */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            backdrop-filter: blur(10px); /* Adjust blur radius as needed */
+            border: 1px solid rgba(255, 255, 255, 0.5); /* Subtle white border */
+            width: 90%;
+            max-width: 600px; /* Limit maximum width for larger screens */
+            margin-top: 20px; /* Add some space between header and container */
+        }
+
+        h1 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 2rem; /* Adjust initial size */
+        }
+
+        .converter-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* More flexible grid */
+            gap: 10px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        .converter-form input[type="number"],
+        .converter-form select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: 'Roboto Mono', monospace; /* Apply coding font to form elements as well */
+            background-color: rgba(255, 255, 255, 0.7); /* Slightly transparent background for inputs/selects */
+            cursor: pointer;
+            font-size: 1rem; /* Adjust initial size */
+        }
+
+        .result-display {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #333;
+            font-family: 'Roboto Mono', monospace; /* Apply coding font to result */
+        }
+
+        .social-icons {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            display: flex;
+            gap: 20px; /* Adjust gap */
+            align-items: center;
+        }
+
+        .social-icons a, .social-icons span {
+            color: #333;
+            font-size: 1.5rem; /* Adjust initial size */
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Adjust colors for better visibility on different temperature backgrounds */
+        body.cold .social-icons a,
+        body.cold .social-icons span,
+        body.pleasant .social-icons a,
+        body.pleasant .social-icons span {
+            color: #555;
+        }
+
+        body.warm .social-icons a,
+        body.warm .social-icons span,
+        body.hot .social-icons a,
+        body.hot .social-icons span {
+            color: #555;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            body {
+                font-size: 14px; /* Adjust base font size for smaller screens */
+            }
+
+            .site-header {
+                padding: 15px 0;
+                margin-bottom: 15px;
+            }
+
+            .logo-placeholder {
+                font-size: 2rem;
+                margin-bottom: 8px;
+            }
+
+            .typing-effect {
+                font-size: 1.5rem;
+                animation: typing-mobile 3s steps(14, end), blink-caret .75s step-end infinite;
+            }
+
+            @keyframes typing-mobile {
+                from { width: 0 }
+                to { width: 100% }
+            }
+
+            .container {
+                padding: 20px;
+                width: 95%;
+                max-width: none;
+                margin-top: 15px;
+            }
+
+            h1 {
+                font-size: 1.7rem;
+                margin-bottom: 10px;
+            }
+
+            .converter-form {
+                grid-template-columns: 1fr; /* Stack form elements on smaller screens */
+                gap: 8px;
+                margin-bottom: 15px;
+            }
+
+            .converter-form input[type="number"],
+            .converter-form select {
+                padding: 10px;
+                font-size: 1rem;
+            }
+
+            .result-display {
+                margin-top: 15px;
+                font-size: 1.1rem;
+            }
+
+            .social-icons {
+                gap: 10px;
+                padding: 8px 15px;
+            }
+
+            .social-icons a, .social-icons span {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Tablet Responsiveness */
+        @media (min-width: 601px) and (max-width: 1024px) {
+            body {
+                font-size: 15px;
+            }
+
+            .container {
+                width: 85%;
+            }
+
+            .converter-form {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Adjust grid for tablets */
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .typing-effect {
+                font-size: 2.2rem;
+            }
+
+            .logo-placeholder {
+                font-size: 2.2rem;
+            }
+
+            .social-icons {
+                gap: 15px;
+            }
+
+            .social-icons a, .social-icons span {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Temperature Animation */
+        @keyframes cold-blink {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        .cold-animation {
+            animation: cold-blink 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes hot-glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 165, 0, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(255, 165, 0, 0.8); }
+        }
+
+        .hot-animation {
+            animation: hot-glow 2s ease-in-out infinite alternate;
+        }
+    </style>
+</head>
+<body id="body">
+    <header class="site-header">
+        <div class="logo-placeholder">🌡️</div> <h1 class="typing-effect">Temperature Converter</h1>
+    </header>
+    <div class="container">
+        <p>Enter the temperature and select units.</p>
+        <div class="converter-form">
+            <input type="number" id="temperature" placeholder="0.00">
+            <select id="fromUnit">
+                <option value="celsius">Celsius</option>
+                <option value="fahrenheit">Fahrenheit</option>
+                <option value="kelvin">Kelvin</option>
+            </select>
+            <select id="toUnit">
+                <option value="celsius">Celsius</option>
+                <option value="fahrenheit">Fahrenheit</option>
+                <option value="kelvin">Kelvin</option>
+            </select>
+        </div>
+        <div id="result" class="result-display"></div>
+    </div>
+
+    <div class="social-icons">
+        <a href="mailto:rajlaiya2017@gmail.com?Subject=Contact from TempConvert Hub" title="Email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
+        <span class="share-icon" onclick="shareOnWhatsApp()" title="Share on WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 11a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2z"></path><path d="M12 22c-5.523 0-10-4.477-10-10S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"></path><path d="M16 8c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2z"></path></svg></span>
+        <a href="#portfolio" title="Portfolio"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line><line x1="9" y1="21" x2="9" y2="3"></line></svg></a>
+    </div>
+
+    <script>
+        const bodyElement = document.getElementById('body');
+        const temperatureInput = document.getElementById('temperature');
+        const fromUnitSelect = document.getElementById('fromUnit');
+        const toUnitSelect = document.getElementById('toUnit');
+        const resultDiv = document.getElementById('result');
+
+        function setBackgroundColor(celsius) {
+            bodyElement.className = ''; // Reset previous class
+
+            if (celsius < 10) {
+                bodyElement.style.backgroundColor = '#ADD8E6';
+                bodyElement.classList.add('cold', 'cold-animation');
+            } else if (celsius < 20) {
+                bodyElement.style.backgroundColor = '#E0FFFF';
+                bodyElement.classList.add('cold', 'cold-animation');
+            } else if (celsius < 25) {
+                bodyElement.style.backgroundColor = '#90EE90';
+                bodyElement.classList.add('pleasant');
+            } else if (celsius < 30) {
+                bodyElement.style.backgroundColor = '#FFFFE0';
+                bodyElement.classList.add('warm');
+            } else if (celsius < 35) {
+                bodyElement.style.backgroundColor = '#FFDAB9';
+                bodyElement.classList.add('hot', 'hot-animation');
+            } else {
+                bodyElement.style.backgroundColor = '#F08080';
+                bodyElement.classList.add('hot', 'hot-animation');
+            }
+        }
+
+        function convertTemperature() {
+            const temperature = parseFloat(temperatureInput.value);
+            const fromUnit = fromUnitSelect.value;
+            const toUnit = toUnitSelect.value;
+
+            if (isNaN(temperature)) {
+                resultDiv.textContent = 'Please enter a valid temperature.';
+                bodyElement.style.backgroundColor = '#f4f4f4'; // Reset background
+                bodyElement.className = '';
+                return;
+            }
+
+            let celsius;
+
+            switch (fromUnit) {
+                case 'celsius':
+                    celsius = temperature;
+                    break;
+                case 'fahrenheit':
+                    celsius = (temperature - 32) * 5 / 9;
+                    break;
+                case 'kelvin':
+                    celsius = temperature - 273.15;
+                    break;
+            }
+
+            let convertedTemperature;
+
+            switch (toUnit) {
+                case 'celsius':
+                    convertedTemperature = celsius;
+                    break;
+                case 'fahrenheit':
+                    convertedTemperature = (celsius * 9 / 5) + 32;
+                    break;
+                case 'kelvin':
+                    convertedTemperature = celsius + 273.15;
+                    break;
+            }
+
+            resultDiv.textContent = `${temperatureInput.value} ${capitalizeFirstLetter(fromUnit)} is ${convertedTemperature.toFixed(2)} ${capitalizeFirstLetter(toUnit)}`;
+
+            // Set background color based on the calculated Celsius value
+            setBackgroundColor(celsius);
+        }
+
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        function checkAndConvert() {
+            if (temperatureInput.value && fromUnitSelect.value && toUnitSelect.value) {
+                convertTemperature();
+            } else {
+                resultDiv.textContent = '';
+                bodyElement.style.backgroundColor = '#f4f4f4'; // Reset background
+                bodyElement.className = '';
+            }
+        }
+
+        function shareOnWhatsApp() {
+            const currentUrl = window.location.href;
+            const whatsappMessage = encodeURIComponent("Check out this Temperature Converter: " + currentUrl);
+            window.open("https://wa.me/?text=" + whatsappMessage, "_blank");
+        }
+
+        temperatureInput.addEventListener('input', checkAndConvert);
+        fromUnitSelect.addEventListener('change', checkAndConvert);
+        toUnitSelect.addEventListener('change', checkAndConvert);
+
+        // Initial check
+        checkAndConvert();
+    </script>
+</body>
+</html>
