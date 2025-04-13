@@ -205,6 +205,8 @@
             }
         }
 
+        
+
         /* Tablet Responsiveness */
         @media (min-width: 601px) and (max-width: 1024px) {
             body {
@@ -268,12 +270,15 @@
         <p>Enter the temperature and select units.</p>
         <div class="converter-form">
             <input type="number" id="temperature" placeholder="0.00">
-            <select id="fromUnit">
+            <label for="fromUnit">From Unit</label>
+            <select id="fromUnit" name="fromUnit">
                 <option value="celsius">Celsius</option>
                 <option value="fahrenheit">Fahrenheit</option>
                 <option value="kelvin">Kelvin</option>
             </select>
-            <select id="toUnit">
+            
+            <label for="toUnit">To Unit</label>
+            <select id="toUnit" name="toUnit">
                 <option value="celsius">Celsius</option>
                 <option value="fahrenheit">Fahrenheit</option>
                 <option value="kelvin">Kelvin</option>
