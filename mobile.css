@@ -1,0 +1,353 @@
+/* ==========================================================================
+   AeroTemp AI - Dedicated Mobile Sizing and Responsiveness Overrides
+   Targets screen widths of 768px or less for a seamless viewport fit.
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+    /* 1. Global Container Padding & Spacing */
+    .app-layout {
+        padding: 8px !important;
+        gap: 8px !important;
+    }
+
+    .cyber-panel {
+        padding: 10px !important;
+        border-radius: 8px !important;
+    }
+
+    /* 2. Compact Header Bar */
+    .header-bar {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 8px !important;
+        padding-bottom: 8px !important;
+    }
+
+    .brand {
+        flex-direction: column !important;
+        gap: 4px !important;
+        text-align: center !important;
+    }
+
+    .brand-logo {
+        font-size: 1.4rem !important;
+    }
+
+    .brand-title h1 {
+        font-size: 1.15rem !important;
+        justify-content: center !important;
+    }
+
+    .brand-title p {
+        font-size: 0.58rem !important;
+    }
+
+    .search-area {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .search-field {
+        padding: 6px 10px !important;
+        font-size: 0.8rem !important;
+        border-radius: 6px !important;
+    }
+
+    .search-btn {
+        width: 32px !important;
+        height: 32px !important;
+        border-radius: 6px !important;
+    }
+
+    /* 3. Sidebar Grid Layout */
+    .sidebar {
+        gap: 8px !important;
+    }
+
+    /* 4. Compact Telemetry dials */
+    .telemetry-header {
+        margin-bottom: 8px !important;
+        padding-bottom: 6px !important;
+        font-size: 0.6rem !important;
+    }
+
+    .current-city {
+        font-size: 1.25rem !important;
+    }
+
+    .current-time {
+        font-size: 0.65rem !important;
+        margin-bottom: 8px !important;
+    }
+
+    /* Scaled Circular Weather Gauge */
+    .weather-gauge-container {
+        width: 110px !important;
+        height: 110px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .gauge-svg {
+        width: 110px !important;
+        height: 110px !important;
+    }
+
+    .gauge-temp {
+        font-size: 1.8rem !important;
+    }
+
+    .gauge-unit {
+        font-size: 0.75rem !important;
+    }
+
+    .weather-status-badge {
+        font-size: 0.85rem !important;
+        margin-bottom: 8px !important;
+        gap: 4px !important;
+    }
+
+    /* Tighter Telemetry grid */
+    .telemetry-grid {
+        gap: 8px !important;
+        padding-top: 8px !important;
+    }
+
+    .telemetry-item {
+        gap: 4px !important;
+    }
+
+    .telemetry-item-icon {
+        width: 26px !important;
+        height: 26px !important;
+        border-radius: 5px !important;
+    }
+
+    .telemetry-item-icon i {
+        width: 12px !important;
+        height: 12px !important;
+    }
+
+    .telemetry-label {
+        font-size: 0.58rem !important;
+    }
+
+    .telemetry-value {
+        font-size: 0.75rem !important;
+    }
+
+    /* 5. Live Converter grid */
+    .converter-panel h3 {
+        font-size: 0.9rem !important;
+        padding-bottom: 6px !important;
+    }
+
+    .converter-display-box {
+        padding: 10px !important;
+    }
+
+    .converter-city {
+        font-size: 0.65rem !important;
+    }
+
+    .converter-val-celsius {
+        font-size: 0.95rem !important;
+        margin-bottom: 6px !important;
+    }
+
+    .converter-units-grid {
+        gap: 6px !important;
+        padding-top: 8px !important;
+        margin-top: 6px !important;
+    }
+
+    .conv-unit-card {
+        padding: 6px 2px !important;
+        border-radius: 6px !important;
+    }
+
+    .conv-unit-lbl {
+        font-size: 0.6rem !important;
+    }
+
+    .conv-unit-val {
+        font-size: 0.95rem !important;
+    }
+
+    /* 6. 10-Day Scrollable Timeline Card */
+    .forecast-10day-panel h3 {
+        font-size: 0.95rem !important;
+        margin-bottom: 10px !important;
+    }
+
+    .forecast-10day-grid {
+        gap: 8px !important;
+        padding-bottom: 6px !important;
+    }
+
+    .day-card {
+        flex: 0 0 75px !important;
+        padding: 8px 6px !important;
+        gap: 4px !important;
+        border-radius: 6px !important;
+    }
+
+    .day-name {
+        font-size: 0.7rem !important;
+    }
+
+    .day-date {
+        font-size: 0.58rem !important;
+    }
+
+    .day-icon {
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    .day-temps {
+        font-size: 0.7rem !important;
+        gap: 4px !important;
+    }
+
+    .day-rain-prob {
+        font-size: 0.58rem !important;
+        gap: 2px !important;
+    }
+
+    /* 7. Compact Day Details Panel */
+    .day-details-expanded {
+        padding: 10px !important;
+        margin-top: 8px !important;
+        border-radius: 8px !important;
+    }
+
+    .details-wrapper {
+        gap: 12px !important;
+    }
+
+    .details-main-info {
+        padding-bottom: 8px !important;
+        gap: 6px !important;
+    }
+
+    .details-date {
+        font-size: 0.85rem !important;
+    }
+
+    .details-icon {
+        width: 30px !important;
+        height: 30px !important;
+    }
+
+    .details-temp-range {
+        font-size: 1.1rem !important;
+    }
+
+    .details-desc {
+        font-size: 0.75rem !important;
+    }
+
+    .details-telemetry-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+    }
+
+    .details-tel-item {
+        padding: 6px !important;
+        border-radius: 6px !important;
+        gap: 2px !important;
+    }
+
+    .details-tel-lbl {
+        font-size: 0.58rem !important;
+    }
+
+    .details-tel-val {
+        font-size: 0.75rem !important;
+    }
+
+    .details-tel-val i {
+        width: 10px !important;
+        height: 10px !important;
+        margin-right: 2px !important;
+    }
+
+    /* 8. AI Forecast Layout & Advisory */
+    .forecast-panel {
+        gap: 10px !important;
+    }
+
+    .forecast-title {
+        font-size: 0.95rem !important;
+        gap: 6px !important;
+    }
+
+    .ai-status-badge {
+        padding: 2px 8px !important;
+        font-size: 0.65rem !important;
+    }
+
+    .chart-container {
+        height: 130px !important;
+        padding: 6px !important;
+    }
+
+    .ai-console-wrapper {
+        gap: 6px !important;
+    }
+
+    .ai-advisory-card {
+        padding: 8px !important;
+        border-radius: 6px !important;
+    }
+
+    .ai-advisory-title {
+        font-size: 0.75rem !important;
+        margin-bottom: 4px !important;
+    }
+
+    .ai-advisory-text {
+        font-size: 0.75rem !important;
+    }
+
+    .ai-console {
+        height: 65px !important;
+        padding: 6px !important;
+        font-size: 0.65rem !important;
+        border-radius: 6px !important;
+    }
+
+    /* 9. Compact Radar Scan */
+    .radar-scan-panel h3 {
+        font-size: 0.95rem !important;
+    }
+
+    .radar-canvas-container {
+        height: 90px !important;
+        border-radius: 8px !important;
+        gap: 12px !important;
+        padding: 6px 12px !important;
+    }
+
+    .radar-screen-wrapper {
+        width: 74px !important;
+        height: 74px !important;
+    }
+
+    .radar-telemetry-overlay {
+        font-size: 0.55rem !important;
+    }
+
+    /* 10. Footer Layout */
+    .footer {
+        flex-direction: column !important;
+        gap: 8px !important;
+        padding: 8px 0 !important;
+        font-size: 0.72rem !important;
+        margin-top: 8px !important;
+    }
+
+    .footer-links {
+        gap: 12px !important;
+    }
+}
