@@ -393,9 +393,17 @@ async function fetchWeatherData(lat, lon, cityName) {
         document.getElementById('conv-city-lbl').textContent = `${cityName} Live`;
         document.getElementById('latlon-telemetry').textContent = `${Math.abs(lat).toFixed(4)}° ${lat >= 0 ? 'N' : 'S'} / ${Math.abs(lon).toFixed(4)}° ${lon >= 0 ? 'E' : 'W'}`;
 
-        // Formats current time
-        const date = new Date();
-        document.getElementById('date-disp').textContent = date.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) + " UTC";
+        // Formats current time based on timezone offset of selected location
+        const utcSeconds = Date.now() + (new Date().getTimezoneOffset() * 60000);
+        const localTime = new Date(utcSeconds + (data.utc_offset_seconds * 1000));
+        const tzAbbr = data.timezone_abbreviation || "UTC";
+        document.getElementById('date-disp').textContent = localTime.toLocaleDateString('en-US', { 
+            weekday: 'long', 
+            month: 'short', 
+            day: 'numeric', 
+            hour: '2-digit', 
+            minute: '2-digit' 
+        }) + ` (${tzAbbr})`;
 
         // Save baseline variables
         const tempC = data.current.temperature_2m;
@@ -504,7 +512,8 @@ function detectSeasonFromWeather(data) {
     let detected = 'summer';
 
     if (Math.abs(lat) < 26) {
-        if (rain > 1.0 || (month >= 5 && month <= 9 && temp > 24)) {
+        const humidity = data.current.relative_humidity_2m || 0;
+        if (rain > 1.0 || (humidity > 70 && month >= 5 && month <= 9 && temp > 24)) {
             detected = 'monsoon';
         } else if (temp < 23 || month >= 10 || month <= 1) {
             detected = 'winter';
@@ -1148,6 +1157,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Unit toggle triggers
     document.getElementById('temp-toggle-btn').addEventListener('click', toggleTemperatureUnit);
+
+    // Set automated 2-minute satellite telemetry refresh interval
+    setInterval(() => {
+        logInference("[SYS] Automated 2-minute satellite telemetry refresh cycle triggered.");
+        fetchWeatherData(currentCity.lat, currentCity.lon, currentCity.name);
+    }, 120000);
 });
 
 // Bind window event handlers explicitly for HTML access
